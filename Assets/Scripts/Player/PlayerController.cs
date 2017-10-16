@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour {
+public class PlayerController : MonoBehaviour
+{
 
+    public GameObject bullet;
     public float moveSpeed;
     public float jumpForce;
 
@@ -11,17 +13,19 @@ public class PlayerController : MonoBehaviour {
     private Animator anim;
     private Vector2 velocity, size;
     private float xScale;
+    private bool facingLeft;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start()
+    {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-        size.x = GetComponent<Collider2D>().bounds.extents.x;
-        size.y = GetComponent<Collider2D>().bounds.extents.y;
+        size.x = GetComponent<Collider2D>().bounds.extents.x * 2.0f;
+        size.y = GetComponent<Collider2D>().bounds.extents.y * 2.0f;
         xScale = transform.localScale.x;
-	}
-	
-	public void ProcessInput(float move, bool jumpKeyPressed, bool shootKeyPressed)
+    }
+
+    public void ProcessInput(float move, bool jumpKeyPressed, bool shootKeyPressed)
     {
         //move
         velocity = rb.velocity;
@@ -47,21 +51,27 @@ public class PlayerController : MonoBehaviour {
         if (velocity.x > 0.0f)
         {
             transform.localScale = new Vector3(xScale, transform.localScale.y, transform.localScale.z);
+            facingLeft = false;
         }
         else if (velocity.x < 0.0f)
         {
             transform.localScale = new Vector3(-xScale, transform.localScale.y, transform.localScale.z);
+            facingLeft = true;
         }
     }
 
     private void Shoot()
     {
         anim.SetTrigger("shoot");
+        GameObject temp = Instantiate(bullet, transform.position, Quaternion.identity);
+        if (facingLeft)
+            temp.GetComponent<Bullet>().SetMovingLeft();
+        temp.GetComponent<Bullet>().OffsetBullet(size.x);
     }
 
     private bool CanJump()
     {
-        if (Physics2D.BoxCast(transform.position, size, 0.0f, Vector2.down, 0.3f))
+        if (Physics2D.BoxCast(transform.position, size, 0.0f, Vector2.down, 0.1f))
         {
             return true;
         }
