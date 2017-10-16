@@ -16,8 +16,8 @@ public class PlayerController : MonoBehaviour {
 	void Start () {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-        size.x = GetComponent<Collider2D>().bounds.extents.x;
-        size.y = GetComponent<Collider2D>().bounds.extents.y;
+        size.x = GetComponent<Collider2D>().bounds.extents.x * 2.0f;
+        size.y = GetComponent<Collider2D>().bounds.extents.y * 2.0f;
         xScale = transform.localScale.x;
 	}
 	
@@ -61,7 +61,7 @@ public class PlayerController : MonoBehaviour {
 
     private bool CanJump()
     {
-        if (Physics2D.BoxCast(transform.position, size, 0.0f, Vector2.down, 0.3f))
+        if (Physics2D.BoxCast(transform.position, size, 0.0f, Vector2.down, 0.1f))
         {
             return true;
         }
