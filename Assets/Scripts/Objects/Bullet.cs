@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour {
 
+    public int damage;
     public float moveSpeed;
 
     private bool goingLeft;
@@ -32,7 +33,11 @@ public class Bullet : MonoBehaviour {
     {
         if (collision.CompareTag("Enemy"))
         {
-            //logic for hitting enemy
+            Health enemyHP = collision.GetComponent<Health>();
+            if (enemyHP)
+            {
+                enemyHP.TakeDamage(damage);
+            }
         }
         Destroy(gameObject);
     }
