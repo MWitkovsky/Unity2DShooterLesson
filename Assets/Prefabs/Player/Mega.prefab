@@ -134,6 +134,10 @@ MonoBehaviour:
   bullet: {fileID: 1848221321342760, guid: 53818044c2bd58f40a3a28420f68626a, type: 2}
   moveSpeed: 5
   jumpForce: 10
+  landSound: {fileID: 8300000, guid: 94ab92eb64ec3884fa31d9853a6f6f67, type: 3}
+  shootSound: {fileID: 8300000, guid: 635bde31be320c544ac039cad88f7d03, type: 3}
+  hitSound: {fileID: 8300000, guid: 7595170f8e78b514892766970e4c6121, type: 3}
+  deadSound: {fileID: 8300000, guid: 8d929d3e7fd4f8a4286110bc833c4867, type: 3}
 --- !u!212 &212486056406127832
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     public GameObject bullet;
     public float moveSpeed;
     public float jumpForce;
+    public AudioClip landSound, shootSound, hitSound, deadSound;
 
     private Rigidbody2D rb;
     private Animator anim;
@@ -67,6 +68,7 @@ public class PlayerController : MonoBehaviour
         if (facingLeft)
             temp.GetComponent<Bullet>().SetMovingLeft();
         temp.GetComponent<Bullet>().OffsetBullet(size.x);
+        SoundManager.PlaySound(shootSound);
     }
 
     private bool CanJump()
@@ -83,6 +85,16 @@ public class PlayerController : MonoBehaviour
         if (col.gameObject.CompareTag("Ground"))
         {
             anim.SetBool("land", true);
+            SoundManager.PlaySound(landSound);
         }
+        else if (col.gameObject.CompareTag("Enemy"))
+        {
+            SoundManager.PlaySound(hitSound);
+        }
+    }
+
+    private void OnDestroy()
+    {
+        SoundManager.PlaySound(deadSound);
     }
 }

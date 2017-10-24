@@ -6,6 +6,7 @@ public class Bullet : MonoBehaviour {
 
     public int damage;
     public float moveSpeed;
+    public AudioClip hitSound;
 
     private bool goingLeft;
 
@@ -37,6 +38,7 @@ public class Bullet : MonoBehaviour {
             if (enemyHP)
             {
                 enemyHP.TakeDamage(damage);
+                SoundManager.PlaySound(hitSound);
             }
         }
         Destroy(gameObject);

@@ -99,7 +99,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b11becfd60f8754b805c895f3872f9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 1
   moveSpeed: 10
+  hitSound: {fileID: 8300000, guid: 6a044ffba8924f341b4a0441d101592c, type: 3}
 --- !u!212 &212971646380375854
 SpriteRenderer:
   m_ObjectHideFlags: 1
