@@ -41,6 +41,7 @@ public class Bullet : MonoBehaviour {
                 SoundManager.PlaySound(hitSound);
             }
         }
-        Destroy(gameObject);
+        if (!collision.CompareTag("Bullet"))
+            Destroy(gameObject);
     }
 }

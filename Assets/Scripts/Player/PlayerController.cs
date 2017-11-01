@@ -89,6 +89,7 @@ public class PlayerController : MonoBehaviour
         }
         else if (col.gameObject.CompareTag("Enemy"))
         {
+            GetComponent<Health>().TakeDamage(1);
             SoundManager.PlaySound(hitSound);
         }
     }
